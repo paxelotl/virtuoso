@@ -10,7 +10,7 @@ var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 @onready var animation_player = $AnimationPlayer
 @onready var neck =$Neck
-@onready var camera = $Neck/Camera
+@onready var camera_pivot = $Neck/CameraPivot
 
 var can_move: bool = false
 
@@ -21,8 +21,8 @@ func _ready():
 func _unhandled_input(event):
 	if event is InputEventMouseMotion and can_move:
 		neck.rotate_y(-event.relative.x * SENSITIVITY)
-		camera.rotate_x(-event.relative.y * SENSITIVITY)
-		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-75), deg_to_rad(75))
+		camera_pivot.rotate_x(-event.relative.y * SENSITIVITY)
+		camera_pivot.rotation.x = clamp(camera_pivot.rotation.x, deg_to_rad(-75), deg_to_rad(75))
 	
 	if event is InputEventMouseButton and can_move:
 		if event.is_pressed() and event.button_index == MOUSE_BUTTON_LEFT:

@@ -76,7 +76,7 @@ bottom_radius = 0.02
 height = 1.4
 
 [node name="Player" type="CharacterBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3619, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 script = ExtResource("1_md5qj")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -92,8 +92,10 @@ shape = SubResource("ConvexPolygonShape3D_6rsoa")
 
 [node name="Neck" type="Node3D" parent="."]
 
-[node name="Camera" type="Camera3D" parent="Neck"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.23342, 1.49403, 1.49954)
+[node name="CameraPivot" type="Node3D" parent="Neck"]
+
+[node name="Camera" type="Camera3D" parent="Neck/CameraPivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.5, 1.5)
 current = true
 
 [node name="SwordPivot" type="Node3D" parent="Neck"]
