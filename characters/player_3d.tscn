@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://ty0d3ot8vrfd"]
 
-[ext_resource type="Script" path="res://scripts/player_controller.gd" id="1_md5qj"]
+[ext_resource type="Script" path="res://scripts/player_controller_3d.gd" id="1_a0pq7"]
 
 [sub_resource type="Animation" id="Animation_rhuln"]
 length = 0.001
@@ -77,7 +77,7 @@ height = 1.4
 
 [node name="Player" type="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-script = ExtResource("1_md5qj")
+script = ExtResource("1_a0pq7")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

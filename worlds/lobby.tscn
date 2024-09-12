@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://c32jn0u000iph"]
+
+[ext_resource type="PackedScene" uid="uid://b7jybm1r0pe87" path="res://characters/player_2d.tscn" id="1_e21bw"]
+[ext_resource type="PackedScene" uid="uid://do4n0ha65kofv" path="res://objects/portal.tscn" id="2_mnold"]
+
+[node name="Lobby" type="Node"]
+
+[node name="Player" parent="." instance=ExtResource("1_e21bw")]
+position = Vector2(670, 454)
+
+[node name="Portal" parent="." instance=ExtResource("2_mnold")]
+position = Vector2(841, 456)
+
+[connection signal="body_entered" from="Portal" to="Portal" method="_on_body_entered" flags=3]

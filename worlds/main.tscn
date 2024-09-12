@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://bwxw4py30xel7"]
 
-[ext_resource type="PackedScene" uid="uid://ty0d3ot8vrfd" path="res://scenes/characters/player.tscn" id="1_4idh5"]
+[ext_resource type="PackedScene" uid="uid://ty0d3ot8vrfd" path="res://characters/player_3d.tscn" id="1_yvl06"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_3qhbm"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -30,7 +30,7 @@ environment = SubResource("Environment_p8sy7")
 transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
 shadow_enabled = true
 
-[node name="Player" parent="." instance=ExtResource("1_4idh5")]
+[node name="Player" parent="." instance=ExtResource("1_yvl06")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.27784, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
