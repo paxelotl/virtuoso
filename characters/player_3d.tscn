@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://ty0d3ot8vrfd"]
+[gd_scene load_steps=9 format=3 uid="uid://ty0d3ot8vrfd"]
 
 [ext_resource type="Script" path="res://scripts/player_controller_3d.gd" id="1_a0pq7"]
 
@@ -70,6 +70,8 @@ height = 1.82
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_6rsoa"]
 points = PackedVector3Array(0.146419, 0.798923, -0.0931545, 0.214286, -0.714174, -0.0999273, 0.0999692, 0.714174, 0.214286, -0.185633, 0.799911, -0.128538, 0.128538, -0.799911, 0.185675, -0.128538, 0.799911, 0.185675, -0.0999273, -0.714174, -0.214286, 0.0999692, 0.714174, -0.214286, -0.0999273, -0.714174, 0.214286, 0.214286, 0.714174, 0.0999692, -0.214286, 0.714174, 0.0999692, 0.128538, -0.799911, -0.185633, 0.214286, 0.714174, -0.0999273, -0.185633, -0.799911, -0.128538, 0.214286, -0.714174, 0.0999692, -0.0999273, 0.714174, -0.214286, -0.185633, -0.799911, 0.128538, 0.0952011, 0.870678, 0.0407891, -0.214286, -0.714174, -0.0999273, 0.0952023, -0.870689, -0.0407496, -0.0407506, 0.87071, -0.0951647, -0.214286, -0.714174, 0.0999692, 0.0999692, -0.714174, -0.214286, -0.214286, 0.714174, -0.0999273, 0.0999692, -0.714174, 0.214286, -0.0999273, 0.714174, 0.214286, -0.0951637, -0.870701, 0.0407902, 0.185675, 0.799911, 0.128538, 0.128538, 0.799911, -0.185633, -0.0951634, 0.870699, 0.04079, -0.0407507, -0.870712, -0.0951649, 0.185675, -0.799911, -0.128538)
 
+[sub_resource type="CylinderMesh" id="CylinderMesh_31r4l"]
+
 [sub_resource type="CylinderMesh" id="CylinderMesh_j0w7b"]
 top_radius = 0.02
 bottom_radius = 0.02
@@ -91,6 +93,11 @@ mesh = SubResource("CapsuleMesh_u74gn")
 shape = SubResource("ConvexPolygonShape3D_6rsoa")
 
 [node name="Neck" type="Node3D" parent="."]
+
+[node name="FaceIndicator" type="MeshInstance3D" parent="Neck"]
+transform = Transform3D(0.1, 0, 0, 0, -2.18557e-08, 0.1, 0, -0.5, -4.37114e-09, 0, 0.5, -0.5)
+mesh = SubResource("CylinderMesh_31r4l")
+skeleton = NodePath("../..")
 
 [node name="CameraPivot" type="Node3D" parent="Neck"]
 
