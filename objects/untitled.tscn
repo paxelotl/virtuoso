@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://dcjgungkmh3ro"]
+
+[ext_resource type="PackedScene" uid="uid://sikx4l7e5jt4" path="res://imports/untitled.glb" id="1_ikdot"]
+[ext_resource type="Script" path="res://scripts/untitled.gd" id="2_qprga"]
+
+[node name="untitled" instance=ExtResource("1_ikdot")]
+script = ExtResource("2_qprga")
