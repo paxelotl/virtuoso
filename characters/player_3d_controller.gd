@@ -1,6 +1,5 @@
 extends CharacterBody3D
 
-
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 const SENSITIVITY = 0.01
@@ -9,14 +8,13 @@ const SENSITIVITY = 0.01
 var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 @onready var animation_player = $AnimationPlayer
-@onready var neck =$Neck
+@onready var neck = $Neck
 @onready var camera_pivot = $Neck/CameraPivot
 
 var can_move: bool = false
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-
 
 func _unhandled_input(event):
 	if event is InputEventMouseMotion and can_move:
@@ -28,6 +26,7 @@ func _unhandled_input(event):
 		if event.is_pressed() and event.button_index == MOUSE_BUTTON_LEFT:
 			animation_player.play("attack")
 
+# TODO: Move this to global
 	if event is InputEventKey and event.is_pressed():
 		if event.keycode == KEY_ESCAPE:
 			match Input.mouse_mode:
@@ -49,8 +48,8 @@ func _physics_process(delta: float) -> void:
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
-	var input_dir = Input.get_vector("move_left", "move_right", "move_forward", "move_backward")
-	var direction = (neck.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+	var input_dir: Vector2 = Input.get_vector("move_left", "move_right", "move_forward", "move_backward")
+	var direction: Vector3 = (neck.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	if direction and can_move:
 		velocity.x = direction.x * SPEED
 		velocity.z = direction.z * SPEED

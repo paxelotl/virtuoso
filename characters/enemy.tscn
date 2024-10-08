@@ -1,6 +1,6 @@
-[gd_scene load_steps=9 format=3 uid="uid://ty0d3ot8vrfd"]
+[gd_scene load_steps=9 format=3 uid="uid://b7ahol6xslhvq"]
 
-[ext_resource type="Script" path="res://characters/player_3d_controller.gd" id="1_a0pq7"]
+[ext_resource type="Script" path="res://characters/enemy.gd" id="1_dmsu1"]
 
 [sub_resource type="Animation" id="Animation_rhuln"]
 length = 0.001
@@ -77,9 +77,11 @@ top_radius = 0.02
 bottom_radius = 0.02
 height = 1.4
 
-[node name="Player" type="CharacterBody3D"]
+[node name="Enemy" type="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-script = ExtResource("1_a0pq7")
+script = ExtResource("1_dmsu1")
+
+[node name="PlayerPointer" type="Node3D" parent="."]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -98,12 +100,6 @@ shape = SubResource("ConvexPolygonShape3D_6rsoa")
 transform = Transform3D(0.1, 0, 0, 0, -2.18557e-08, 0.1, 0, -0.5, -4.37114e-09, 0, 0.5, -0.5)
 mesh = SubResource("CylinderMesh_31r4l")
 skeleton = NodePath("../..")
-
-[node name="CameraPivot" type="Node3D" parent="Neck"]
-
-[node name="Camera" type="Camera3D" parent="Neck/CameraPivot"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.5, 1.5)
-current = true
 
 [node name="SwordPivot" type="Node3D" parent="Neck"]
 transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, 0, 0, 0)
