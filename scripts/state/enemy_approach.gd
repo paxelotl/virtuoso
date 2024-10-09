@@ -6,8 +6,6 @@ extends State
 
 var player: CharacterBody3D
 var can_move: bool = false
-var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
-
 
 func enter():
 	print("STATE: Approach")
