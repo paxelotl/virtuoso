@@ -1,5 +1,5 @@
 class_name EnemyApproach
-extends EnemyState
+extends State
 
 @export var enemy: CharacterBody3D
 @export var move_speed: float = 2.0
@@ -10,16 +10,18 @@ var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 
 func enter():
+	print("STATE: Approach")
+	
 	player = get_tree().get_first_node_in_group("Player")
 
 func exit():
 	enemy.velocity = Vector3.ZERO
 
-func physics_update(delta: float):
+func physics_update(_delta: float):
 	handle_state()
-	handle_movement(delta)
+	handle_movement()
 
-func handle_movement(delta: float) -> void:
+func handle_movement() -> void:
 	# TODO: Use math function
 	enemy.look_at(player.global_position)
 	enemy.rotation.x = 0
@@ -37,10 +39,11 @@ func handle_movement(delta: float) -> void:
 func handle_state():
 	# Allow movement if far away
 	var distance = (player.position - enemy.position).length()
-	if distance > 3:
+	if distance > 1:
 		can_move = true
 	else:
 		can_move = false
+		Transitioned.emit(self, "Attack")
 	
-	if distance > 8:
+	if distance > 5:
 		Transitioned.emit(self, "Idle")

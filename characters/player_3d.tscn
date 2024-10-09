@@ -1,6 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://ty0d3ot8vrfd"]
+[gd_scene load_steps=10 format=3 uid="uid://ty0d3ot8vrfd"]
 
 [ext_resource type="Script" path="res://characters/player_3d_controller.gd" id="1_a0pq7"]
+[ext_resource type="Script" path="res://scripts/hitbox/hurtbox.gd" id="2_yyet6"]
 
 [sub_resource type="Animation" id="Animation_rhuln"]
 length = 0.001
@@ -88,6 +89,12 @@ libraries = {
 
 [node name="Mesh" type="MeshInstance3D" parent="."]
 mesh = SubResource("CapsuleMesh_u74gn")
+
+[node name="Hurtbox" type="Area3D" parent="Mesh"]
+script = ExtResource("2_yyet6")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Mesh/Hurtbox"]
+shape = SubResource("ConvexPolygonShape3D_6rsoa")
 
 [node name="Collider" type="CollisionShape3D" parent="."]
 shape = SubResource("ConvexPolygonShape3D_6rsoa")

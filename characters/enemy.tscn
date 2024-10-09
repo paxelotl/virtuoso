@@ -1,9 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://b7ahol6xslhvq"]
+[gd_scene load_steps=15 format=3 uid="uid://b7ahol6xslhvq"]
 
 [ext_resource type="Script" path="res://characters/enemy.gd" id="1_dmsu1"]
 [ext_resource type="Script" path="res://scripts/state/state_machine.gd" id="2_crl0p"]
+[ext_resource type="Script" path="res://scripts/hitbox/hitbox.gd" id="2_n20wu"]
 [ext_resource type="Script" path="res://scripts/state/enemy_idle.gd" id="3_wh2e1"]
 [ext_resource type="Script" path="res://scripts/state/enemy_approach.gd" id="4_3gnoe"]
+[ext_resource type="Script" path="res://scripts/state/enemy_attack.gd" id="5_n3a1b"]
 
 [sub_resource type="Animation" id="Animation_rhuln"]
 length = 0.001
@@ -80,16 +82,19 @@ top_radius = 0.02
 bottom_radius = 0.02
 height = 1.4
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_ho85r"]
+size = Vector3(0.1, 1.4, 0.1)
+
 [node name="Enemy" type="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 script = ExtResource("1_dmsu1")
-
-[node name="PlayerPointer" type="Node3D" parent="."]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_42smy")
 }
+
+[node name="PlayerPointer" type="Node3D" parent="."]
 
 [node name="Mesh" type="MeshInstance3D" parent="."]
 mesh = SubResource("CapsuleMesh_u74gn")
@@ -113,6 +118,16 @@ transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 
 mesh = SubResource("CylinderMesh_j0w7b")
 skeleton = NodePath("../../..")
 
+[node name="Hitbox" type="Area3D" parent="Neck/SwordPivot/MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, -3.55271e-15, 0, 0, 1, 0, 0, 0)
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("2_n20wu")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Neck/SwordPivot/MeshInstance3D/Hitbox"]
+transform = Transform3D(1, 0, 0, 0, 1, 3.55271e-15, 0, 0, 1, 0, 0, 0)
+shape = SubResource("BoxShape3D_ho85r")
+
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("2_crl0p")
 initial_state = NodePath("Idle")
@@ -124,3 +139,6 @@ enemy = NodePath("../..")
 [node name="Approach" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy")]
 script = ExtResource("4_3gnoe")
 enemy = NodePath("../..")
+
+[node name="Attack" type="Node" parent="StateMachine"]
+script = ExtResource("5_n3a1b")
