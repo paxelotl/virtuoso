@@ -1,6 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://b7ahol6xslhvq"]
+[gd_scene load_steps=12 format=3 uid="uid://b7ahol6xslhvq"]
 
 [ext_resource type="Script" path="res://characters/enemy.gd" id="1_dmsu1"]
+[ext_resource type="Script" path="res://scripts/state/state_machine.gd" id="2_crl0p"]
+[ext_resource type="Script" path="res://scripts/state/enemy_idle.gd" id="3_wh2e1"]
+[ext_resource type="Script" path="res://scripts/state/enemy_approach.gd" id="4_3gnoe"]
 
 [sub_resource type="Animation" id="Animation_rhuln"]
 length = 0.001
@@ -109,3 +112,15 @@ visible = false
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, -0.7)
 mesh = SubResource("CylinderMesh_j0w7b")
 skeleton = NodePath("../../..")
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+script = ExtResource("2_crl0p")
+initial_state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy")]
+script = ExtResource("3_wh2e1")
+enemy = NodePath("../..")
+
+[node name="Approach" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy")]
+script = ExtResource("4_3gnoe")
+enemy = NodePath("../..")
